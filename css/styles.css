@@ -559,11 +559,28 @@ footer { padding: 3rem; border-top: 1px solid var(--border); }
 }
 .lightbox-close:hover { border-color: var(--white); }
 
-/* ── Reservation Floor Map ── */
+/* ── Reservation Section ── */
+.reservation-section {
+  position: relative; padding: 3rem; overflow: hidden;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(200,164,78,.05) 0%, transparent 60%),
+    var(--surface);
+}
+.reservation-section::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 120px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+/* Floor Map */
 .floor-map-svg {
   width: 100%; height: auto; display: block;
   border: 1px solid var(--border); border-radius: 4px;
-  background: var(--card); padding: 1rem;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(200,164,78,.03) 0%, transparent 70%),
+    var(--card);
+  padding: 1rem;
 }
 .map-lm {
   fill: var(--text-muted); font-family: 'Manrope', sans-serif;
@@ -585,22 +602,39 @@ footer { padding: 3rem; border-top: 1px solid var(--border); }
   font-size: 11px; font-weight: 500; dominant-baseline: central;
 }
 
-/* Seats */
+/* Non-interactive tables */
+.tbl-landmark { pointer-events: none; }
+.tbl-lbl {
+  fill: var(--text-muted); font-family: 'Manrope', sans-serif;
+  font-size: 11px; font-weight: 600; text-anchor: middle;
+  dominant-baseline: central; opacity: .5;
+}
+
+/* Interactive VIP booths */
 .seat-g { cursor: pointer; outline: none; }
 .seat-r {
-  fill: rgba(30, 30, 30, .6); stroke: var(--border-light);
+  fill: rgba(200, 164, 78, .06); stroke: rgba(200, 164, 78, .35);
   stroke-width: 1.5; transition: fill .25s, stroke .25s, filter .25s;
 }
-.seat-booth { stroke: rgba(200, 164, 78, .35); }
+.seat-pulse {
+  fill: none; stroke: rgba(200, 164, 78, .2); stroke-width: 1;
+  animation: boothPulse 3s ease-in-out infinite;
+}
+@keyframes boothPulse {
+  0%, 100% { stroke-opacity: .15; stroke-width: 1; }
+  50% { stroke-opacity: .4; stroke-width: 2.5; }
+}
 .seat-g:hover .seat-r, .seat-g:focus-visible .seat-r {
-  fill: rgba(200, 164, 78, .1); stroke: var(--accent);
+  fill: rgba(200, 164, 78, .15); stroke: var(--accent); stroke-width: 2;
 }
+.seat-g:hover .seat-pulse { animation: none; stroke-opacity: 0; }
 .seat-g.selected .seat-r {
-  fill: rgba(200, 164, 78, .2); stroke: var(--accent);
-  stroke-width: 2; filter: url(#seatGlow);
+  fill: rgba(200, 164, 78, .22); stroke: var(--accent);
+  stroke-width: 2.5; filter: url(#seatGlow);
 }
+.seat-g.selected .seat-pulse { animation: none; stroke-opacity: 0; }
 .seat-lbl {
-  fill: var(--text-sec); font-family: 'Manrope', sans-serif;
+  fill: var(--accent); font-family: 'Manrope', sans-serif;
   font-size: 12px; font-weight: 700; letter-spacing: .05em;
   text-anchor: middle; dominant-baseline: central;
   pointer-events: none; transition: fill .25s;

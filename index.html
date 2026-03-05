@@ -151,7 +151,7 @@
     <div class="reservation-section" style="margin-top:4rem">
       <div class="section-eyebrow">Reserve Your Spot</div>
       <h2 class="section-title" style="margin-bottom:.5rem">Select Your Table</h2>
-      <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:2rem">Click on a booth or table to begin your reservation</p>
+      <p style="color:var(--text-sec);font-size:.85rem;margin-bottom:2rem">Select a VIP booth to begin your reservation</p>
       <div id="reservationMap"></div>
     </div>
   </div>
@@ -290,6 +290,21 @@
   <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
   <img id="lightboxImg" src="" alt="">
 </div>
+
+<!-- Hidden form for Netlify detection (the real form is rendered by JS) -->
+<form name="vip-reservation" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="form-name" type="hidden" value="vip-reservation">
+  <input name="bot-field">
+  <input name="booth">
+  <input name="name">
+  <input name="email">
+  <input name="phone">
+  <input name="date">
+  <input name="guests">
+  <input name="occasion">
+  <input name="bottles">
+  <input name="notes">
+</form>
 
 <!-- Back to Top -->
 <button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>

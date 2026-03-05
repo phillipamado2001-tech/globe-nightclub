@@ -23,7 +23,7 @@
     { id: 'table-8', label: 'T8', x: 28, y: 572, w: 52, h: 52 }
   ];
 
-  const ALL_SEATS = [...BOOTHS, ...TABLES];
+  const ALL_SEATS = BOOTHS; // Only booths are reservable
 
   const OCCASIONS = [
     'Birthday', 'Girls Night', 'Guys Night',
@@ -37,13 +37,20 @@
   // ── SVG Floor Map ──
   function buildSVG() {
     return `
-    <svg viewBox="0 0 800 940" xmlns="http://www.w3.org/2000/svg" class="floor-map-svg" role="img" aria-label="Globe Nightclub floor plan — click a booth or table to reserve">
+    <svg viewBox="0 0 800 940" xmlns="http://www.w3.org/2000/svg" class="floor-map-svg" role="img" aria-label="Globe Nightclub floor plan — click a VIP booth to reserve">
       <defs>
         <filter id="seatGlow">
           <feGaussianBlur stdDeviation="4" result="b"/>
           <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
+        <radialGradient id="ambientGlow" cx="50%" cy="55%" r="50%">
+          <stop offset="0%" stop-color="rgba(200,164,78,.06)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
       </defs>
+
+      <!-- Ambient atmosphere -->
+      <rect x="4" y="4" width="792" height="932" fill="url(#ambientGlow)" rx="4"/>
 
       <!-- Outer walls -->
       <rect x="4" y="4" width="792" height="932" fill="none" stroke="var(--border-light)" stroke-width="2" rx="4"/>
@@ -73,26 +80,25 @@
       <line x1="455" y1="158" x2="455" y2="196" stroke="var(--border)" stroke-width="1"/>
       <line x1="465" y1="158" x2="465" y2="196" stroke="var(--border)" stroke-width="1"/>
 
-      <!-- Booths (VIP, larger with rounded corners) -->
+      <!-- Tables (non-interactive landmarks) -->
+      ${TABLES.map(t => `
+      <g class="tbl-landmark">
+        <rect x="${t.x}" y="${t.y}" width="${t.w}" height="${t.h}" fill="rgba(22,22,22,.5)" stroke="var(--border)" stroke-width="1" rx="3"/>
+        <text x="${t.x + t.w/2}" y="${t.y + t.h/2 + 4}" class="tbl-lbl">${t.label}</text>
+      </g>`).join('')}
+
+      <!-- VIP Booths (interactive, with pulse animation) -->
       ${BOOTHS.map(b => `
       <g class="seat-g" data-seat="${b.id}" role="button" tabindex="0" aria-label="Reserve ${b.label}${b.note ? ' (' + b.note + ')' : ''}">
+        <rect x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" class="seat-pulse" rx="6"/>
         <rect x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" class="seat-r seat-booth" rx="6"/>
         <text x="${b.x + b.w/2}" y="${b.y + b.h/2 + (b.note ? -5 : 4)}" class="seat-lbl">${b.label}</text>
         ${b.note ? `<text x="${b.x + b.w/2}" y="${b.y + b.h/2 + 13}" class="seat-sub">(${b.note})</text>` : ''}
       </g>`).join('')}
 
-      <!-- Tables (standard, smaller) -->
-      ${TABLES.map(t => `
-      <g class="seat-g" data-seat="${t.id}" role="button" tabindex="0" aria-label="Reserve ${t.label}">
-        <rect x="${t.x}" y="${t.y}" width="${t.w}" height="${t.h}" class="seat-r seat-tbl" rx="3"/>
-        <text x="${t.x + t.w/2}" y="${t.y + t.h/2 + 4}" class="seat-lbl">${t.label}</text>
-      </g>`).join('')}
-
       <!-- Legend -->
-      <rect x="300" y="870" width="16" height="16" rx="4" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity=".7"/>
-      <text x="322" y="883" class="map-legend">VIP Booth</text>
-      <rect x="420" y="870" width="14" height="14" rx="2" fill="none" stroke="var(--border-light)" stroke-width="1.5" opacity=".7"/>
-      <text x="440" y="883" class="map-legend">Table</text>
+      <rect x="310" y="872" width="16" height="16" rx="4" fill="rgba(200,164,78,.12)" stroke="var(--accent)" stroke-width="1.5" opacity=".8"/>
+      <text x="334" y="884" class="map-legend">VIP Booth — tap to reserve</text>
     </svg>`;
   }
 
@@ -105,7 +111,7 @@
       <p style="display:none"><input name="bot-field"></p>
 
       <div class="res-form-hdr">
-        <h3 id="resFormTitle">Select a booth or table above</h3>
+        <h3 id="resFormTitle">Select a VIP booth above</h3>
         <p id="resFormSub">Fill out the details below and we'll confirm your reservation.</p>
       </div>
 
