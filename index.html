@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Globe Nightclub is Spokane's premier nightlife destination featuring live DJs, bottle service, VIP booths, and special events every Thursday through Saturday.">
+<meta name="theme-color" content="#080808">
+<meta property="og:title" content="Globe Nightclub | Spokane, WA">
+<meta property="og:description" content="Spokane's premier nightlife destination. Live DJs, bottle service, VIP experiences. Thu-Sat 8PM-2AM.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://cdn.prod.website-files.com/619e92e83bd61ba508ce3312/62a10425dcc133320724769c_Globe%20Experience.jpg">
+<title>Globe Nightclub | Spokane, WA</title>
+<link rel="icon" href="images/globe-logo.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo"><img src="images/globe-logo.png" alt="Globe Nightclub"></a>
+  <div class="nav-center" id="navLinks">
+    <a href="#events">Events</a>
+    <a href="#vip">Bottle Service</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="#vip" class="nav-btn">Reserve VIP</a>
+    <button class="mobile-toggle" id="mobileToggle" onclick="toggleNav()" aria-label="Toggle menu">&#9776;</button>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-bg"><img src="images/IMG_9739.jpeg" alt="Globe Nightclub DJ booth and light show"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-light"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow" data-config="hero_eyebrow">Spokane, Washington</div>
+    <img class="hero-logo" src="images/globe-logo.png" alt="Globe Nightclub">
+    <div class="hero-sub" data-config="hero_subtitle">Where the Night Begins</div>
+    <div class="hero-actions">
+      <a href="#vip" class="btn-primary" data-config="hero_cta_primary">Reserve VIP</a>
+      <a href="#events" class="btn-ghost" data-config="hero_cta_secondary">See Events</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- ── Events ── -->
+<div class="divider"></div>
+<section id="events" class="reveal">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow" data-config="events_eyebrow">What's Coming Up</div>
+      <h2 class="section-title" data-config="events_title">Upcoming Events</h2>
+    </div>
+
+    <!-- Setup instructions (only visible if no Sheet ID) -->
+    <div class="setup-banner" id="setupBanner">
+      <h3>Google Sheet Setup</h3>
+      <p>To manage events and all site content, create a Google Sheet with the required tabs.</p>
+      <ol>
+        <li>Create a Google Sheet with tabs: Events, Schedule, Bottles, VIP_Packages, Food, Gallery, Specials, SiteConfig</li>
+        <li>Go to <strong>File &rarr; Share &rarr; Publish to web</strong> &rarr; Select "Entire Document" &rarr; Publish as CSV</li>
+        <li>Copy the Sheet ID from the URL (the long string between /d/ and /edit)</li>
+        <li>Paste it into <code>js/config.js</code> as the SHEET_ID value</li>
+      </ol>
+      <p style="margin-top:1rem">Append <code>?refresh=1</code> to the URL after making changes to bust the cache.</p>
+    </div>
+
+    <div id="eventsContainer" class="events-list">
+      <div class="events-loading">Loading events...</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Gallery ── -->
+<div class="divider"></div>
+<section id="gallery" class="reveal">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow" data-config="gallery_eyebrow">See the Vibe</div>
+      <h2 class="section-title" data-config="gallery_title">Gallery</h2>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Rendered by gallery.js, default content below -->
+      <div class="gallery-cell"><img src="images/IMG_8365.jpeg" alt="Dance floor atmosphere" loading="lazy"><div class="gallery-cell-overlay"></div></div>
+      <div class="gallery-cell"><img src="images/DSC07335.jpeg" alt="Friends at Globe" loading="lazy"><div class="gallery-cell-overlay"></div></div>
+      <div class="gallery-cell"><img src="images/IMG_2777.jpeg" alt="DJ at the decks" loading="lazy"><div class="gallery-cell-overlay"></div></div>
+      <div class="gallery-cell"><img src="images/IMG_2775.jpeg" alt="VIP bottle service" loading="lazy"><div class="gallery-cell-overlay"></div></div>
+      <div class="gallery-cell"><img src="images/IMG_2774.jpeg" alt="Night out at Globe" loading="lazy"><div class="gallery-cell-overlay"></div></div>
+      <div class="gallery-cell"><img src="images/A15A9E11-2766-4D8E-8AE8-43C2AF47A648.jpeg" alt="Behind the bar" loading="lazy"><div class="gallery-cell-overlay"></div></div>
+      <div class="gallery-cell"><img src="images/DSC02425.jpeg" alt="Good times" loading="lazy"><div class="gallery-cell-overlay"></div></div>
+      <div class="gallery-cell"><img src="images/DSC07920.jpeg" alt="The crowd" loading="lazy"><div class="gallery-cell-overlay"></div></div>
+      <div class="gallery-cell"><img src="images/IMG_8390.jpeg" alt="On the dance floor" loading="lazy"><div class="gallery-cell-overlay"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VIP / Bottle Service ── -->
+<div class="divider"></div>
+<section id="vip" class="reveal">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow" data-config="vip_eyebrow">Elevated Experience</div>
+      <h2 class="section-title" data-config="vip_title">Bottle Service</h2>
+    </div>
+
+    <div class="section-image-banner">
+      <img src="images/DSC07560.jpeg" alt="VIP bottle service experience at Globe Nightclub" loading="lazy">
+    </div>
+
+    <p style="color:var(--text-sec);font-size:.95rem;line-height:1.8;max-width:600px;margin-bottom:1rem" data-config="vip_description">Skip the line and secure your spot. Globe's luxurious bottle service booths deliver dedicated service, premium bottles, and the best seats in the house.</p>
+
+    <!-- Friday Deal / VIP Special -->
+    <div class="friday-deal" id="vipSpecial" style="margin-bottom:3rem;margin-top:1.5rem;display:none"></div>
+
+    <!-- Bottle Menu Grid -->
+    <div class="bottle-menu" id="bottleMenu">
+      <!-- Rendered by bottles.js -->
+    </div>
+
+    <!-- Bottle promo -->
+    <div class="bottle-note" id="bottleSpecial" style="display:none;margin-top:1rem;font-style:normal;color:var(--accent);font-weight:600;font-size:.8rem;letter-spacing:.05em;text-align:center"></div>
+
+    <!-- VIP Collection Packages -->
+    <div class="vip-collection">
+      <div class="vip-collection-inner">
+        <h3 data-config="vip_collection_title">VIP Collection</h3>
+        <div class="vip-collection-sub" data-config="vip_collection_subtitle">Curated bottle packages for the ultimate night out</div>
+        <div class="vip-pkg-grid" id="vipPackages">
+          <!-- Rendered by vip-packages.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Bite Me - Food Menu -->
+    <div class="bite-me-section">
+      <div class="section-eyebrow" style="margin-top:1rem" data-config="food_eyebrow">Cravings &amp; Temptations</div>
+      <h2 class="section-title" style="margin-bottom:.5rem" data-config="food_title">Bite Me.</h2>
+      <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:1.5rem" data-config="food_subtitle">Elevated bites designed for the VIP experience</p>
+      <div class="bite-me-grid" id="foodMenu">
+        <!-- Rendered by food.js -->
+      </div>
+    </div>
+
+    <!-- Reservation Floor Map -->
+    <div class="reservation-section" style="margin-top:4rem">
+      <div class="section-eyebrow">Reserve Your Spot</div>
+      <h2 class="section-title" style="margin-bottom:.5rem">Select Your Table</h2>
+      <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:2rem">Click on a booth or table to begin your reservation</p>
+      <div id="reservationMap"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ── -->
+<div class="divider"></div>
+<section id="about" class="reveal">
+  <div class="section-inner">
+    <div class="about-layout">
+      <div class="about-text">
+        <div class="section-eyebrow" data-config="about_eyebrow">About the Venue</div>
+        <h2 data-config="about_title">Where Spokane<br>Comes Alive</h2>
+        <p data-config="about_p1">Globe Nightclub is Spokane's premier nightlife destination &mdash; state-of-the-art lighting and sound systems that create an unforgettable party atmosphere. With newly renovated upholstery and luxurious bottle service booths, we offer an elevated experience for guests looking to dance, celebrate, and vibe all night long.</p>
+        <p data-config="about_p2">Located on the corner of Division &amp; Main, Globe is part of the Tangen Hospitality Group family. Everyone is welcome here &mdash; you belong.</p>
+        <div class="about-stats">
+          <div><div class="stat-num" data-config="about_stat1_num">21+</div><div class="stat-label" data-config="about_stat1_label">Ages</div></div>
+          <div><div class="stat-num" data-config="about_stat2_num">3</div><div class="stat-label" data-config="about_stat2_label">Nights / Week</div></div>
+          <div><div class="stat-num" data-config="about_stat3_num">8pm</div><div class="stat-label" data-config="about_stat3_label">Doors Open</div></div>
+        </div>
+      </div>
+      <div class="about-image"><img src="images/IMG_9714.jpeg" alt="Globe Nightclub" data-config="about_image" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Instagram ── -->
+<div class="divider"></div>
+<section id="instagram" class="reveal">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow" data-config="instagram_eyebrow">Follow Along</div>
+      <h2 class="section-title" data-config="instagram_handle">@globespokanewa</h2>
+    </div>
+    <div class="ig-embed-wrap">
+      <iframe id="igEmbed" src="https://www.instagram.com/globespokanewa/embed" width="100%" height="800" frameborder="0" scrolling="no" allowtransparency="true" style="background:var(--card)"></iframe>
+    </div>
+    <div class="ig-follow">
+      <a href="https://instagram.com/globespokanewa" target="_blank" rel="noopener" class="btn-ghost" data-config="instagram_follow">Follow Us on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Private Events ── -->
+<div class="divider"></div>
+<section id="private" class="reveal">
+  <div class="section-inner">
+    <div class="private-banner">
+      <div class="private-banner-content">
+        <div class="section-eyebrow" data-config="private_eyebrow">Book the Venue</div>
+        <h2 data-config="private_title">Private Events</h2>
+        <p data-config="private_description">Globe is available for private events with full production, bar service, and custom packages tailored to your vision.</p>
+        <div class="private-types">
+          <div class="private-type"><h4 data-config="private_type1_name">Birthday Parties</h4><p data-config="private_type1_desc">Go big for your birthday</p></div>
+          <div class="private-type"><h4 data-config="private_type2_name">Corporate Events</h4><p data-config="private_type2_desc">Impress your team</p></div>
+          <div class="private-type"><h4 data-config="private_type3_name">Celebrity Meet &amp; Greets</h4><p data-config="private_type3_desc">Exclusive experiences</p></div>
+          <div class="private-type"><h4 data-config="private_type4_name">Custom Events</h4><p data-config="private_type4_desc">Tell us your vision</p></div>
+        </div>
+        <a href="#contact" class="btn-primary">Inquire Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Schedule + Contact ── -->
+<div class="divider"></div>
+<section id="contact" class="reveal">
+  <div class="section-inner">
+    <div class="contact-layout">
+      <div class="contact-left">
+        <div class="section-eyebrow" data-config="contact_eyebrow">Get in Touch</div>
+        <h2 data-config="contact_title">Find Us</h2>
+        <div class="contact-item">
+          <div class="contact-label">Address</div>
+          <div class="contact-value"><a href="https://maps.google.com/?q=204+N+Division+St+Spokane+WA+99202" target="_blank" rel="noopener" data-config="contact_address">204 N Division St<br>Spokane, WA 99202</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Phone</div>
+          <div class="contact-value"><a href="tel:5094434014" data-config="contact_phone">(509) 443-4014</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Hours</div>
+          <div class="contact-value" data-config="contact_hours">Thu &ndash; Sat: 8PM &ndash; 2AM<br>Sun &ndash; Wed: Closed</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">All Events</div>
+          <div class="contact-value" data-config="contact_age">21+ with valid ID</div>
+        </div>
+        <div class="socials">
+          <a href="https://www.facebook.com/profile.php?id=61577688076009" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook" data-config="social_facebook">FB</a>
+          <a href="https://instagram.com/globespokanewa" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram" data-config="social_instagram">IG</a>
+        </div>
+      </div>
+      <div class="contact-map">
+        <iframe id="contactMap" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Globe+Bar+%26+Kitchen,Spokane+WA&zoom=16" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+
+    <!-- Weekly Schedule - paired with contact info -->
+    <div id="schedule" style="margin-top:4rem">
+      <div class="section-header">
+        <div class="section-eyebrow" data-config="schedule_eyebrow">Every Week</div>
+        <h2 class="section-title" data-config="schedule_title">Weekly Schedule</h2>
+      </div>
+      <div class="schedule-strip" id="scheduleContainer">
+        <!-- Rendered by schedule.js -->
+        <div class="sched-day"><div class="sched-day-label">Mon</div><div class="sched-closed">Closed</div></div>
+        <div class="sched-day"><div class="sched-day-label">Tue</div><div class="sched-closed">Closed</div></div>
+        <div class="sched-day"><div class="sched-day-label">Wed</div><div class="sched-closed">Closed</div></div>
+        <div class="sched-day active"><div class="sched-day-label">Thu</div><div class="sched-day-event">Ladies Night</div><div class="sched-day-time">8PM &ndash; 2AM</div></div>
+        <div class="sched-day active"><div class="sched-day-label">Fri</div><div class="sched-day-event">Live DJ</div><div class="sched-day-time">8PM &ndash; 2AM</div></div>
+        <div class="sched-day active"><div class="sched-day-label">Sat</div><div class="sched-day-event">Main Event</div><div class="sched-day-time">8PM &ndash; 2AM</div></div>
+        <div class="sched-day"><div class="sched-day-label">Sun</div><div class="sched-closed">Closed</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo"><img src="images/globe-logo.png" alt="Globe Nightclub"></a>
+    <div class="footer-links">
+      <a href="#events">Events</a>
+      <a href="#vip">Bottle Service</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-legal" data-config="footer_legal">&copy; 2026 Globe Nightclub &middot; A Tangen Hospitality Group Venue &middot; 21+ to enter</div>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
+
+<!-- Scripts (order matters: config -> utils -> renderers -> ui -> app) -->
+<script src="js/config.js"></script>
+<script src="js/csv-parser.js"></script>
+<script src="js/cache.js"></script>
+<script src="js/fallback-data.js"></script>
+<script src="js/sheets-loader.js"></script>
+<script src="js/renderers/site-config.js"></script>
+<script src="js/renderers/events.js"></script>
+<script src="js/renderers/schedule.js"></script>
+<script src="js/renderers/bottles.js"></script>
+<script src="js/renderers/vip-packages.js"></script>
+<script src="js/renderers/food.js"></script>
+<script src="js/renderers/gallery.js"></script>
+<script src="js/renderers/specials.js"></script>
+<script src="js/renderers/reservation.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
