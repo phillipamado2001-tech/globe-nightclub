@@ -9,7 +9,7 @@
 
     // Phase 2: Load all other sections in parallel
     const [events, schedule, bottles, vipPkgs, food, gallery, specials] = await Promise.all([
-      loadSheet(CONFIG.TABS.EVENTS, null),
+      loadSheet(CONFIG.TABS.EVENTS, 'events'),
       loadSheet(CONFIG.TABS.SCHEDULE, 'schedule'),
       loadSheet(CONFIG.TABS.BOTTLES, 'bottles'),
       loadSheet(CONFIG.TABS.VIP_PACKAGES, 'vip_packages'),
@@ -38,11 +38,8 @@
     // Initialize reservation floor map
     if (typeof initReservation === 'function') initReservation();
 
-    // Show setup banner if no Sheet ID configured
-    if (!CONFIG.SHEET_ID) {
-      const banner = document.getElementById('setupBanner');
-      if (banner) banner.classList.add('show');
-    }
+    // Setup banner only shows if manually enabled
+    // (not needed — site runs from fallback-data.js via Claude Code)
 
   } catch (err) {
     console.error('[Globe] Init error:', err);

@@ -2,6 +2,11 @@
 // Current hardcoded content as JS objects (safety net when Sheets is unreachable)
 
 const FALLBACK = {
+  events: [
+    // Add events here — example:
+    // { name: 'DJ Snake', date: '03/21/2026', time: '8PM \u2013 2AM', genre: 'EDM / House', tag: 'Special Event', description: '', flyer_url: '', ticket_link: '' }
+  ],
+
   schedule: [
     { day: 'Mon', status: 'closed', event_name: '', time: '' },
     { day: 'Tue', status: 'closed', event_name: '', time: '' },
