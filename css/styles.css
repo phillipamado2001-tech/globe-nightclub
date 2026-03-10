@@ -72,7 +72,7 @@ nav.scrolled {
   position: relative; height: 100vh; min-height: 700px;
   display: flex; flex-direction: column; align-items: center;
   justify-content: center; text-align: center; overflow: hidden;
-  padding-top: 85px; padding-bottom: 3rem;
+  padding-top: 85px;
 }
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
@@ -135,14 +135,14 @@ nav.scrolled {
 .btn-ghost:hover { border-color: var(--text-sec); background: rgba(255,255,255,.03); }
 .hero-scroll {
   display: flex; flex-direction: column; align-items: center;
-  gap: .5rem; margin-top: 2.5rem; animation: heroFade 1.2s ease-out .8s both;
+  gap: .4rem; margin-top: 1.5rem; animation: heroFade 1.2s ease-out .8s both;
 }
 .hero-scroll span {
   font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
   color: var(--text-muted);
 }
 .scroll-line {
-  width: 1px; height: 40px;
+  width: 1px; height: 25px;
   background: linear-gradient(180deg, var(--text-muted), transparent);
   animation: scrollPulse 2s ease-in-out infinite;
 }
