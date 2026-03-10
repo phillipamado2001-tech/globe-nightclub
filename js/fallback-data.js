@@ -3,8 +3,7 @@
 
 const FALLBACK = {
   events: [
-    // Add events here — example:
-    // { name: 'DJ Snake', date: '03/21/2026', time: '8PM \u2013 2AM', genre: 'EDM / House', tag: 'Special Event', description: '', flyer_url: '', ticket_link: '' }
+    { name: 'St. Patrick\u2019s Day Party', date: '03/14/2026', time: 'Daytime Bottle Service', genre: '', tag: 'Special Event', description: 'Celebrate St. Patrick\u2019s Day with us! Daytime bottle service all Saturday long.', flyer_url: '', ticket_link: '' }
   ],
 
   schedule: [
